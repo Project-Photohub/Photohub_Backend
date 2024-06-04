@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @MappedSuperclass
 open class BaseLongIdEntity(
-    id: Long? = null
+    id: Long?
 ) {
 
     @Id
