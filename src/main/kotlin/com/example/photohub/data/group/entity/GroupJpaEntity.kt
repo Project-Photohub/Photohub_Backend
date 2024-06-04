@@ -22,6 +22,6 @@ class GroupJpaEntity(
     var logo: String = logo
         protected set
 
-    @OneToMany(mappedBy = "group", cascade = [(CascadeType.ALL)])
+    @OneToMany(targetEntity = MemberJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])
     var members: List<MemberJpaEntity> = emptyList()
 }
