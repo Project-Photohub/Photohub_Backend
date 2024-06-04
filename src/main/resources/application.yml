@@ -1,3 +1,9 @@
 spring:
   application:
     name: Photohub_Backend
+
+  datasource:
+    url: ${DB_URL}
+    hikari:
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
