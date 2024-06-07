@@ -3,7 +3,12 @@ package com.example.photohub.usecase.exception
 open class StatusCodeException protected constructor(
     val statusCode: Int,
     override val message: String
-) : RuntimeException()
+) : RuntimeException() {
+    companion object {
+        val NO_CONTENT
+            get() = StatusCodeException(204, "No Content.")
+    }
+}
 
 class BusinessException(
     statusCode: Int,
