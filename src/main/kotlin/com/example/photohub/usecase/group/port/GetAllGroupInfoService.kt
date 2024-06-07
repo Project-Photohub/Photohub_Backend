@@ -5,16 +5,16 @@ import com.example.photohub.usecase.exception.StatusCodeException
 import com.example.photohub.usecase.group.dto.response.GroupInfo
 import com.example.photohub.usecase.group.dto.response.GroupInfoListDto
 import com.example.photohub.usecase.group.port.`in`.GetAllGroupInfoUseCase
-import com.example.photohub.usecase.group.port.out.persistence.GetGroupPort
+import com.example.photohub.usecase.group.port.out.persistence.FindGroupPort
 
 @ReadOnlyUseCase
 class GetAllGroupInfoService(
-    private val getGroupPort: GetGroupPort
+    private val findGroupPort: FindGroupPort
 ) : GetAllGroupInfoUseCase {
 
     override fun invoke(): GroupInfoListDto {
 
-        val groups = getGroupPort.getAllGroup()
+        val groups = findGroupPort.findAllGroup()
 
         if (groups.isEmpty()) {
             throw StatusCodeException.NO_CONTENT
