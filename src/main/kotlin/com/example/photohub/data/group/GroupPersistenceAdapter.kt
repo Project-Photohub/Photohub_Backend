@@ -12,7 +12,7 @@ class GroupPersistenceAdapter(
 ) : GetGroupPort {
 
     override fun getAllGroup(): List<GroupModel> =
-        groupRepository.getAll().map {
+        groupRepository.findAll().map {
             GroupModelImpl(it)
         }
 }

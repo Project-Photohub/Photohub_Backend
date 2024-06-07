@@ -2,8 +2,12 @@ spring:
   application:
     name: Photohub_Backend
 
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
   datasource:
     url: ${DB_URL}
-    hikari:
-      username: ${DB_USER}
-      password: ${DB_PASSWORD}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}

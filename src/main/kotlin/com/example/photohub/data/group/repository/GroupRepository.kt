@@ -6,5 +6,5 @@ import org.springframework.data.repository.Repository
 @org.springframework.stereotype.Repository
 interface GroupRepository : Repository<GroupJpaEntity, Long?> {
 
-    fun getAll(): List<GroupJpaEntity>
+    fun findAll(): List<GroupJpaEntity>
 }
