@@ -11,6 +11,11 @@ class GroupPersistenceAdapter(
     private val groupRepository: GroupRepository
 ) : FindGroupPort {
 
+    override fun findById(id: Long): GroupModel? =
+        groupRepository.findById(id)?.run {
+            GroupModelImpl(this)
+        }
+
     override fun findAllGroup(): List<GroupModel> =
         groupRepository.findAll().map {
             GroupModelImpl(it)
