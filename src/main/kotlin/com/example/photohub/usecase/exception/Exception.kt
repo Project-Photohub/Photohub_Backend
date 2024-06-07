@@ -1,10 +1,12 @@
 package com.example.photohub.usecase.exception
 
-open class StatusCodeException protected constructor(
+open class StatusCodeException(
     val statusCode: Int,
     override val message: String
 ) : RuntimeException() {
     companion object {
+        val INTERNAL_SERVER_ERROR
+            get() = StatusCodeException(500, "Internal Server Error")
         val NO_CONTENT
             get() = StatusCodeException(204, "No Content.")
     }
