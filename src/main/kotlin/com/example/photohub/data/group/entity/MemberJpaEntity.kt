@@ -2,6 +2,7 @@ package com.example.photohub.data.group.entity
 
 import com.example.photohub.data.TableNames
 import com.example.photohub.data.base.entity.BaseLongIdEntity
+import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import jakarta.persistence.*
 
 @Entity(name = TableNames.MEMBER)
@@ -12,11 +13,11 @@ class MemberJpaEntity(
     id: Long? = null
 ) : BaseLongIdEntity(id) {
 
-    @Column(name = "name", updatable = false, nullable = false)
+    @Column(name = "name", updatable = true, nullable = false)
     var name: String = name
         protected set
 
-    @Column(name = "nickname", updatable = false, nullable = false)
+    @Column(name = "nickname", updatable = true, nullable = false)
     var nickname: String = nickname
         protected set
 
@@ -24,4 +25,7 @@ class MemberJpaEntity(
     @JoinColumn(name = "group_id", updatable = false, nullable = false)
     var group: GroupJpaEntity = group
         protected set
+
+    @OneToMany(targetEntity = PhotoCardJpaEntity::class, mappedBy = "member", cascade = [(CascadeType.ALL)])
+    var photoCards: List<PhotoCardJpaEntity> = emptyList()
 }
