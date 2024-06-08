@@ -1,5 +1,6 @@
 package com.example.photohub.usecase.photocard.model.impl
 
+import com.example.photohub.data.group.repository.MemberRepository
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import com.example.photohub.usecase.exception.BusinessException
 import com.example.photohub.usecase.group.model.GroupModel
@@ -13,7 +14,8 @@ import java.time.LocalDate
 import java.util.*
 
 class PhotoCardModelImpl(
-    val photoCardJpaEntity: PhotoCardJpaEntity
+    val photoCardJpaEntity: PhotoCardJpaEntity,
+    private val memberRepository: MemberRepository
 ) : PhotoCardModel {
 
     override fun getId(): UUID = photoCardJpaEntity.id
@@ -27,9 +29,11 @@ class PhotoCardModelImpl(
 
     override fun getLikeCount(): Long = photoCardJpaEntity.likeCount
 
-    override fun getGroup(): GroupModel = GroupModelImpl(photoCardJpaEntity.group)
+    override fun getGroup(): GroupModel =
+        GroupModelImpl(photoCardJpaEntity.group, memberRepository)
 
-    override fun getMember(): MemberModel = MemberModelImpl(photoCardJpaEntity.member)
+    override fun getMember(): MemberModel =
+        MemberModelImpl(photoCardJpaEntity.member, memberRepository)
 
     override fun getUploader(): UserModel = UserModelImpl(photoCardJpaEntity.uploader)
 
