@@ -15,15 +15,15 @@ class UserJpaEntity(
     id: Long? = null,
 ) : BaseLongIdEntity(id) {
 
-    @Column(name = "name", updatable = false, nullable = false)
+    @Column(name = "name", updatable = true, nullable = false)
     var name: String = name
         protected set
 
-    @Column(name = "username", updatable = false, nullable = false)
+    @Column(name = "username", unique = true, updatable = true, nullable = false)
     var username: String = username
         protected set
 
-    @Column(name = "password", updatable = false, nullable = false)
+    @Column(name = "password", updatable = true, nullable = false)
     var password: String = password
         protected set
 
