@@ -3,9 +3,9 @@ package com.example.photohub.usecase.photocard.model.impl
 import com.example.photohub.ModelFactory
 import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.data.group.entity.MemberJpaEntity
-import com.example.photohub.data.group.repository.MemberRepository
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import com.example.photohub.data.user.entity.UserJpaEntity
+import com.example.photohub.usecase.global.model.RepositoryProvider
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
 import java.time.LocalDate
@@ -13,7 +13,7 @@ import java.util.*
 
 @ModelFactory
 class PhotoCardModelFactoryImpl(
-    private val memberRepository: MemberRepository
+    private val repositoryProvider: RepositoryProvider
 ) : PhotoCardModelFactory {
 
     override fun create(
@@ -31,6 +31,6 @@ class PhotoCardModelFactoryImpl(
             PhotoCardJpaEntity(
                 name, image, backImage, likeCount, group, member, uploader, createdAt, id
             ),
-            memberRepository
+            repositoryProvider
         )
 }
