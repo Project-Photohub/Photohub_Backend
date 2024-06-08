@@ -40,7 +40,7 @@ class PhotoCardJpaEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", updatable = true, nullable = false)
-    var group: GroupJpaEntity? = group
+    var group: GroupJpaEntity = group
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
