@@ -28,12 +28,12 @@ class PhotoCardJpaEntity(
     var image: String = image
         protected set
 
-    @Column(name = "backImage", updatable = true, nullable = false)
+    @Column(name = "back_image", updatable = true, nullable = false)
     var backImage: String = backImage
         protected set
 
-    @Column(name = "like", updatable = true, nullable = false)
-    var like: Long = like
+    @Column(name = "like_count", updatable = true, nullable = false)
+    var likeCount: Long = like
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
