@@ -6,5 +6,7 @@ object TableNames {
 
     const val GROUP = "tbl_group"
     const val MEMBER = "tbl_member"
+
     const val PHOTO_CARD = "tbl_photo_card"
+    const val PHOTO_CARD_LIKE = "tbl_photo_card_like"
 }
