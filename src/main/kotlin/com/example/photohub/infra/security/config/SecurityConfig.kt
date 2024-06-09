@@ -6,7 +6,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-class SecurityConfig {
+class SecurityConfig(
+    private val corsConfig: CorsConfig
+) {
 
     @Bean
     fun configure(httpSecurity: HttpSecurity): SecurityFilterChain =
@@ -16,7 +18,7 @@ class SecurityConfig {
             }
 
             .cors {
-                it.disable()
+                it.configurationSource(corsConfig)
             }
 
             .csrf {
