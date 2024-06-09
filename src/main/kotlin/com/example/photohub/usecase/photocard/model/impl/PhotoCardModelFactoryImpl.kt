@@ -4,7 +4,6 @@ import com.example.photohub.ModelFactory
 import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.data.group.entity.MemberJpaEntity
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
-import com.example.photohub.data.user.entity.UserJpaEntity
 import com.example.photohub.usecase.global.model.RepositoryProvider
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
@@ -23,13 +22,12 @@ class PhotoCardModelFactoryImpl(
         likeCount: Long,
         group: GroupJpaEntity,
         member: MemberJpaEntity,
-        uploader: UserJpaEntity,
         createdAt: LocalDate,
         id: UUID?
     ): PhotoCardModel =
         PhotoCardModelImpl(
             PhotoCardJpaEntity(
-                name, image, backImage, likeCount, group, member, uploader, createdAt, id
+                name, image, backImage, likeCount, group, member, createdAt, id
             ),
             repositoryProvider
         )

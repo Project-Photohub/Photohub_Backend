@@ -6,6 +6,7 @@ import com.example.photohub.data.user.entity.UserJpaEntity
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
+@Deprecated(message = "유저 관련 기능이 제거됨")
 @Entity
 @Table(
     name = TableNames.PHOTO_CARD_LIKE,
