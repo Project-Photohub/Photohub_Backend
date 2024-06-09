@@ -13,6 +13,8 @@ data class PhotoCardInfo(
     val name: String,
     val image: String,
     val backImage: String,
+    val groupName: String,
+    val memberName: String,
     val createdAt: LocalDate,
     val likeCount: Long
 ) {
@@ -23,6 +25,8 @@ data class PhotoCardInfo(
                 name = getName(),
                 image = getImage(),
                 backImage = getBackImage(),
+                groupName = getGroup().getName(),
+                memberName = getMember().getName(),
                 createdAt = getCreatedAt(),
                 likeCount = getLikeCount()
             )
