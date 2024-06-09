@@ -13,7 +13,7 @@ class PhotoCardController(
     private val getPhotoCardFromMemberUseCase: GetPhotoCardFromMemberUseCase
 ) {
 
-    @GetMapping("/{memberId}")
+    @GetMapping("/member/{memberId}")
     fun getPhotoCard(
         @PathVariable("memberId")
         memberId: Long
