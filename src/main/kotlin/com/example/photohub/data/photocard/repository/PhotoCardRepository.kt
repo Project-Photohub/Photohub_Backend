@@ -10,6 +10,8 @@ import java.util.*
 @org.springframework.stereotype.Repository
 interface PhotoCardRepository : Repository<PhotoCardJpaEntity, UUID?> {
 
+    fun save(entity: PhotoCardJpaEntity): PhotoCardJpaEntity
+
     @Query(
         value = "SELECT * " +
                 "FROM ${TableNames.PHOTO_CARD} p " +
