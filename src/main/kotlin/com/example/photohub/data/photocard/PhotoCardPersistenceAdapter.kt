@@ -32,4 +32,28 @@ class PhotoCardPersistenceAdapter(
                 repositoryProvider
             )
         }
+
+    override fun findAllOrderCreateAtLimit30(): List<PhotoCardModel> =
+        photoCardRepository.findAllOrderByCreatedAtDescLimit30().map {
+            PhotoCardModelImpl(
+                it,
+                repositoryProvider
+            )
+        }
+
+    override fun findAllOrderLikeCountLimit30(): List<PhotoCardModel> =
+        photoCardRepository.findAllOrderByLikeCountDescLimit30().map {
+            PhotoCardModelImpl(
+                it,
+                repositoryProvider
+            )
+        }
+
+    override fun findAllOrderRandomLimit30(): List<PhotoCardModel> =
+        photoCardRepository.findAllRandomLimit30().map {
+            PhotoCardModelImpl(
+                it,
+                repositoryProvider
+            )
+        }
 }

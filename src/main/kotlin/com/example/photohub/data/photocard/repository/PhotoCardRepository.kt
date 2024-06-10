@@ -17,7 +17,35 @@ interface PhotoCardRepository : Repository<PhotoCardJpaEntity, UUID?> {
     @Query(
         value = "SELECT * " +
                 "FROM ${TableNames.PHOTO_CARD} p " +
-                "WHERE p.member_id = :memberId",
+                "ORDER BY p.created_at DESC " +
+                "LIMIT 30",
+        nativeQuery = true
+    )
+    fun findAllOrderByCreatedAtDescLimit30(): List<PhotoCardJpaEntity>
+
+    @Query(
+        value = "SELECT * " +
+                "FROM ${TableNames.PHOTO_CARD} p " +
+                "ORDER BY RAND() " +
+                "LIMIT 30",
+        nativeQuery = true
+    )
+    fun findAllRandomLimit30(): List<PhotoCardJpaEntity>
+
+    @Query(
+        value = "SELECT * " +
+                "FROM ${TableNames.PHOTO_CARD} p " +
+                "ORDER BY p.like_count DESC " +
+                "LIMIT 30",
+        nativeQuery = true
+    )
+    fun findAllOrderByLikeCountDescLimit30(): List<PhotoCardJpaEntity>
+
+    @Query(
+        value = "SELECT * " +
+                "FROM ${TableNames.PHOTO_CARD} p " +
+                "WHERE p.member_id = :memberId " +
+                "LIMIT 30",
         nativeQuery = true
     )
     fun findAllByMember(
