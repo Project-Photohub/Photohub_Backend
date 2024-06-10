@@ -31,6 +31,7 @@ class ExceptionFilter(
                 }
 
                 else -> {
+                    e.printStackTrace()
                     writeExceptionResponse(StatusCodeException(500, e.rootCause.message ?: ""), response)
                 }
             }
@@ -55,6 +56,7 @@ class ExceptionFilter(
             )
         )
 
+        response.status = exception.statusCode
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = StandardCharsets.UTF_8.name()
     }

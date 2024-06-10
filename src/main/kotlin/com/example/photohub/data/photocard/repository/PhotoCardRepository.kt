@@ -12,6 +12,8 @@ interface PhotoCardRepository : Repository<PhotoCardJpaEntity, UUID?> {
 
     fun save(entity: PhotoCardJpaEntity): PhotoCardJpaEntity
 
+    fun findById(id: UUID): PhotoCardJpaEntity?
+
     @Query(
         value = "SELECT * " +
                 "FROM ${TableNames.PHOTO_CARD} p " +
