@@ -11,7 +11,7 @@ class CorsConfig : CorsConfigurationSource {
     override fun getCorsConfiguration(request: HttpServletRequest): CorsConfiguration =
         CorsConfiguration().apply {
 
-            allowedOrigins = listOf("http://localhost:3000")
+            allowedOrigins = listOf("http://localhost:5173")
             setAllowedMethods(listOf("*"))
             allowCredentials = true
             allowedHeaders = listOf("*")
