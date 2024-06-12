@@ -11,7 +11,7 @@ import com.example.photohub.usecase.group.model.impl.GroupModelImpl
 import com.example.photohub.usecase.group.model.impl.MemberModelImpl
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 @ModelFactory
 class PhotoCardModelFactoryImpl(
@@ -33,7 +33,7 @@ class PhotoCardModelFactoryImpl(
                 likeCount = 0,
                 group = (group as GroupModelImpl).groupJpaEntity,
                 member = (member as MemberModelImpl).memberJpaEntity,
-                createdAt = LocalDate.now()
+                createdAt = LocalDateTime.now()
             ),
             repositoryProvider
         )

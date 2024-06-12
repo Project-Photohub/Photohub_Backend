@@ -29,7 +29,7 @@ data class PhotoCardInfo(
                 groupName = getGroup().getName(),
                 memberName = getMember().getName(),
                 memberNickname = getMember().getNickname(),
-                createdAt = getCreatedAt(),
+                createdAt = getCreatedAt().toLocalDate(),
                 likeCount = getLikeCount()
             )
         }

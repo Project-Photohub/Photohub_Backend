@@ -2,7 +2,7 @@ package com.example.photohub.usecase.photocard.model
 
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.MemberModel
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 interface PhotoCardModel {
@@ -21,5 +21,5 @@ interface PhotoCardModel {
 
     fun getMember(): MemberModel
 
-    fun getCreatedAt(): LocalDate
+    fun getCreatedAt(): LocalDateTime
 }

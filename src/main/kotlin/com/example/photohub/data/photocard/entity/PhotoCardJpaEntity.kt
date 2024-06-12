@@ -5,7 +5,7 @@ import com.example.photohub.data.base.entity.BaseUuidEntity
 import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.data.group.entity.MemberJpaEntity
 import jakarta.persistence.*
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 @Entity(name = TableNames.PHOTO_CARD)
@@ -16,7 +16,7 @@ class PhotoCardJpaEntity(
     likeCount: Long = 0,
     group: GroupJpaEntity,
     member: MemberJpaEntity,
-    createdAt: LocalDate = LocalDate.now(),
+    createdAt: LocalDateTime = LocalDateTime.now(),
     id: UUID? = null
 ) : BaseUuidEntity(id) {
 
@@ -47,6 +47,6 @@ class PhotoCardJpaEntity(
         protected set
 
     @Column(name = "created_at", updatable = false, nullable = false)
-    var createdAt: LocalDate = createdAt
+    var createdAt: LocalDateTime = createdAt
         protected set
 }

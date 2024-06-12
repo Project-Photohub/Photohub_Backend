@@ -8,7 +8,7 @@ import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.group.model.impl.GroupModelImpl
 import com.example.photohub.usecase.group.model.impl.MemberModelImpl
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 class PhotoCardModelImpl(
@@ -33,5 +33,5 @@ class PhotoCardModelImpl(
     override fun getMember(): MemberModel =
         MemberModelImpl(photoCardJpaEntity.member, repositoryProvider)
 
-    override fun getCreatedAt(): LocalDate = photoCardJpaEntity.createdAt
+    override fun getCreatedAt(): LocalDateTime = photoCardJpaEntity.createdAt
 }

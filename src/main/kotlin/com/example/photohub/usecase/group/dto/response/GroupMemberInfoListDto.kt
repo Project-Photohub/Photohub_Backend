@@ -1,7 +1,7 @@
 package com.example.photohub.usecase.group.dto.response
 
 data class GroupMemberInfoListDto(
-    val group: List<GroupMemberInfo>
+    val groups: List<GroupMemberInfo>
 )
 
 data class GroupMemberInfo(
