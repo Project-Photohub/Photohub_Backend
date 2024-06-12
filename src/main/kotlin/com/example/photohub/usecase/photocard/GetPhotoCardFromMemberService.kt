@@ -25,7 +25,7 @@ class GetPhotoCardFromMemberService(
         }
 
         return PhotoCardInfoListResponse(
-            photoCards.map {
+            OrderScatter(photoCards).map {
                 PhotoCardInfo.of(it)
             }
         )

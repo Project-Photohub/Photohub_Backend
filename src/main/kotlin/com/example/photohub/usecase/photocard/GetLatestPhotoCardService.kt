@@ -11,10 +11,13 @@ class GetLatestPhotoCardService(
     private val findPhotoCardPort: FindPhotoCardPort
 ) : GetLatestPhotoCardUseCase {
 
-    override fun invoke(): PhotoCardInfoListResponse =
-        PhotoCardInfoListResponse(
-            findPhotoCardPort.findAllOrderCreateAtLimit30().map {
-                PhotoCardInfo.of(it)
-            }
+    override fun invoke(): PhotoCardInfoListResponse {
+        val photoCards = findPhotoCardPort.findAllOrderCreateAtLimit30().map {
+            PhotoCardInfo.of(it)
+        }
+
+        return PhotoCardInfoListResponse(
+            OrderScatter(photoCards)
         )
+    }
 }

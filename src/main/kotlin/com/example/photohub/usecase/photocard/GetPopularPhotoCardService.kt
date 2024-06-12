@@ -11,10 +11,14 @@ class GetPopularPhotoCardService(
     private val findPhotoCardPort: FindPhotoCardPort
 ) : GetPopularPhotoCardUseCase {
 
-    override fun invoke(): PhotoCardInfoListResponse =
-        PhotoCardInfoListResponse(
-            findPhotoCardPort.findAllOrderLikeCountLimit30().map {
-                PhotoCardInfo.of(it)
-            }
+    override fun invoke(): PhotoCardInfoListResponse {
+
+        val photoCards = findPhotoCardPort.findAllOrderLikeCountLimit30().map {
+            PhotoCardInfo.of(it)
+        }
+
+        return PhotoCardInfoListResponse(
+            OrderScatter(photoCards)
         )
+    }
 }
