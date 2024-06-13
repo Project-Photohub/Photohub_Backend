@@ -12,7 +12,12 @@ class MemberModelFactoryImpl(
     private val repositoryProvider: RepositoryProvider
 ) : MemberModelFactory {
 
-    override fun create(id: Long?, name: String, nickname: String, groupModel: GroupModel): MemberModel =
+    override fun create(
+        id: Long?,
+        name: String,
+        nickname: String?,
+        groupModel: GroupModel
+    ): MemberModel =
         MemberModelImpl(
             MemberJpaEntity(
                 name = name,

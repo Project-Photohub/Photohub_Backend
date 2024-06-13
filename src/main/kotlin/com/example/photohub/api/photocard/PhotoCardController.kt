@@ -5,8 +5,11 @@ import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardWithIma
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardMaximumInfoResponse
 import com.example.photohub.usecase.photocard.port.`in`.*
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Positive
 import org.jetbrains.annotations.NotNull
 import org.springframework.http.HttpStatus
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -24,7 +27,9 @@ class PhotoCardController(
 
     @GetMapping("/member/{memberId}")
     fun getPhotoCard(
+        @Valid
         @NotNull
+        @Positive
         @PathVariable("memberId")
         memberId: Long
     ): PhotoCardInfoListResponse =
@@ -32,6 +37,7 @@ class PhotoCardController(
 
     @GetMapping("/{id}")
     fun getPhotoCardFromId(
+        @Valid
         @NotNull
         @PathVariable("id")
         id: UUID
@@ -50,12 +56,14 @@ class PhotoCardController(
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/url")
     fun createPhotoCardFromUrl(
+        @Validated
         @RequestBody
         req: CreatePhotoCardWithImageUrlRequest
     ) = createPhotoCardWithImageUrlUseCase(req)
 
     @PatchMapping("/like/{photoCardId}")
     fun likePhotoCard(
+        @Valid
         @NotNull
         @PathVariable("photoCardId")
         photoCardId: UUID

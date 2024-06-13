@@ -24,6 +24,9 @@ dependencies {
     // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
 
+    // Validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
     // Spring Security
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

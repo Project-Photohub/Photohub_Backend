@@ -35,6 +35,8 @@ class ExceptionFilter(
                     writeExceptionResponse(StatusCodeException(500, e.rootCause.message ?: ""), response)
                 }
             }
+        } catch (e: StatusCodeException) {
+            writeExceptionResponse(e, response)
         }
     }
 

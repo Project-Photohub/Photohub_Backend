@@ -8,7 +8,7 @@ interface MemberModel {
 
     fun getName(): String
 
-    fun getNickname(): String
+    fun getNickname(): String?
 
     fun getGroup(): GroupModel
 

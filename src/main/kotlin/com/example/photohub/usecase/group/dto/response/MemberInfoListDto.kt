@@ -9,7 +9,7 @@ data class MemberInfoListDto(
 data class MemberInfo(
     val id: Long,
     val name: String,
-    val nickname: String
+    val nickname: String?
 ) {
     companion object {
         fun of(model: MemberModel): MemberInfo =

@@ -8,7 +8,7 @@ import jakarta.persistence.*
 @Entity(name = TableNames.MEMBER)
 class MemberJpaEntity(
     name: String,
-    nickname: String,
+    nickname: String?,
     group: GroupJpaEntity,
     id: Long? = null
 ) : BaseLongIdEntity(id) {
@@ -17,8 +17,8 @@ class MemberJpaEntity(
     var name: String = name
         protected set
 
-    @Column(name = "nickname", updatable = true, nullable = false)
-    var nickname: String = nickname
+    @Column(name = "nickname", updatable = true, nullable = true)
+    var nickname: String? = nickname
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)

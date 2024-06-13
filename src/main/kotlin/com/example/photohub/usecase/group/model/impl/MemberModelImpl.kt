@@ -18,7 +18,7 @@ class MemberModelImpl(
 
     override fun getName(): String = memberJpaEntity.name
 
-    override fun getNickname(): String = memberJpaEntity.nickname
+    override fun getNickname(): String? = memberJpaEntity.nickname
 
     override fun getGroup(): GroupModel =
         GroupModelImpl(memberJpaEntity.group, repositoryProvider)

@@ -11,7 +11,7 @@ data class PhotoCardMaximumInfoResponse(
     val backImage: String,
     val groupName: String,
     val memberName: String,
-    val memberNickname: String,
+    val memberNickname: String?,
     val createdAt: LocalDate,
     val likeCount: Long
 ) {
