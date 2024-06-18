@@ -38,6 +38,9 @@ dependencies {
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // AWS
+    implementation("io.awspring.cloud:spring-cloud-aws-s3:3.0.2")
 }
 
 allOpen {
