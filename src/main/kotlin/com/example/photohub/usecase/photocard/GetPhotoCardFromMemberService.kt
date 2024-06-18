@@ -3,6 +3,7 @@ package com.example.photohub.usecase.photocard
 import com.example.photohub.ReadOnlyUseCase
 import com.example.photohub.usecase.exception.BusinessException
 import com.example.photohub.usecase.exception.StatusCodeException
+import com.example.photohub.usecase.global.OrderScatter
 import com.example.photohub.usecase.group.port.out.persistence.FindMemberPort
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfo
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse

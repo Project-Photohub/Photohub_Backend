@@ -1,4 +1,4 @@
-package com.example.photohub.usecase.photocard
+package com.example.photohub.usecase.global
 
 import java.time.LocalTime
 import kotlin.random.Random

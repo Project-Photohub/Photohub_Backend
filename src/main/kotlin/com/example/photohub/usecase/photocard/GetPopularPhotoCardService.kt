@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.photocard
 
 import com.example.photohub.ReadOnlyUseCase
+import com.example.photohub.usecase.global.OrderScatter
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfo
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
 import com.example.photohub.usecase.photocard.port.`in`.GetPopularPhotoCardUseCase
