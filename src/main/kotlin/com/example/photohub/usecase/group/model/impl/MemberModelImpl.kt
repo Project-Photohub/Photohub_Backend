@@ -2,15 +2,14 @@ package com.example.photohub.usecase.group.model.impl
 
 import com.example.photohub.data.group.entity.MemberJpaEntity
 import com.example.photohub.usecase.exception.BusinessException
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
-import com.example.photohub.usecase.photocard.model.impl.PhotoCardModelImpl
 
 class MemberModelImpl(
     val memberJpaEntity: MemberJpaEntity,
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : MemberModel {
 
     override fun getId(): Long = memberJpaEntity.id
@@ -21,10 +20,8 @@ class MemberModelImpl(
     override fun getNickname(): String? = memberJpaEntity.nickname
 
     override fun getGroup(): GroupModel =
-        GroupModelImpl(memberJpaEntity.group, repositoryProvider)
+        GroupModelImpl(memberJpaEntity.group, mappingProvider)
 
     override fun getPhotoCards(): List<PhotoCardModel> =
-        repositoryProvider.getPhotoCardRepository().findAllByMember(getId()).map {
-            PhotoCardModelImpl(it, repositoryProvider)
-        }
+        mappingProvider.getPhotoCardsByMember(this.getId())
 }

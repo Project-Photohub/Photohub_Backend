@@ -2,7 +2,7 @@ package com.example.photohub.data.photocard
 
 import com.example.photohub.PersistenceAdapter
 import com.example.photohub.data.photocard.repository.PhotoCardRepository
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.impl.PhotoCardModelImpl
 import com.example.photohub.usecase.photocard.port.out.persistence.FindPhotoCardPort
@@ -12,7 +12,7 @@ import java.util.*
 @PersistenceAdapter
 class PhotoCardPersistenceAdapter(
     private val photoCardRepository: PhotoCardRepository,
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : SavePhotoCardPort,
     FindPhotoCardPort {
 
@@ -21,7 +21,7 @@ class PhotoCardPersistenceAdapter(
             photoCardRepository.save(
                 (photoCardModel as PhotoCardModelImpl).photoCardJpaEntity
             ),
-            repositoryProvider
+            mappingProvider
         )
     }
 
@@ -29,7 +29,7 @@ class PhotoCardPersistenceAdapter(
         photoCardRepository.findById(id)?.run {
             PhotoCardModelImpl(
                 this,
-                repositoryProvider
+                mappingProvider
             )
         }
 
@@ -37,7 +37,7 @@ class PhotoCardPersistenceAdapter(
         photoCardRepository.findAllOrderByCreatedAtDescLimit30().map {
             PhotoCardModelImpl(
                 it,
-                repositoryProvider
+                mappingProvider
             )
         }
 
@@ -45,7 +45,7 @@ class PhotoCardPersistenceAdapter(
         photoCardRepository.findAllOrderByLikeCountDescLimit30().map {
             PhotoCardModelImpl(
                 it,
-                repositoryProvider
+                mappingProvider
             )
         }
 
@@ -53,7 +53,7 @@ class PhotoCardPersistenceAdapter(
         photoCardRepository.findAllRandomLimit30().map {
             PhotoCardModelImpl(
                 it,
-                repositoryProvider
+                mappingProvider
             )
         }
 }

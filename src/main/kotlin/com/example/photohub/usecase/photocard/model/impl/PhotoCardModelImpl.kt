@@ -2,7 +2,7 @@ package com.example.photohub.usecase.photocard.model.impl
 
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import com.example.photohub.usecase.exception.BusinessException
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.group.model.impl.GroupModelImpl
@@ -13,7 +13,7 @@ import java.util.*
 
 class PhotoCardModelImpl(
     val photoCardJpaEntity: PhotoCardJpaEntity,
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : PhotoCardModel {
 
     override fun getId(): UUID = photoCardJpaEntity.id
@@ -28,10 +28,10 @@ class PhotoCardModelImpl(
     override fun getLikeCount(): Long = photoCardJpaEntity.likeCount
 
     override fun getGroup(): GroupModel =
-        GroupModelImpl(photoCardJpaEntity.group, repositoryProvider)
+        GroupModelImpl(photoCardJpaEntity.group, mappingProvider)
 
     override fun getMember(): MemberModel =
-        MemberModelImpl(photoCardJpaEntity.member, repositoryProvider)
+        MemberModelImpl(photoCardJpaEntity.member, mappingProvider)
 
     override fun getCreatedAt(): LocalDateTime = photoCardJpaEntity.createdAt
 }

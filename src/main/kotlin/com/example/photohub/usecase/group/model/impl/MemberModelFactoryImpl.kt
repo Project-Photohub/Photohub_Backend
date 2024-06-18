@@ -2,14 +2,14 @@ package com.example.photohub.usecase.group.model.impl
 
 import com.example.photohub.ModelFactory
 import com.example.photohub.data.group.entity.MemberJpaEntity
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.group.model.MemberModelFactory
 
 @ModelFactory
 class MemberModelFactoryImpl(
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : MemberModelFactory {
 
     override fun create(
@@ -25,6 +25,6 @@ class MemberModelFactoryImpl(
                 id = id,
                 group = (groupModel as GroupModelImpl).groupJpaEntity
             ),
-            repositoryProvider
+            mappingProvider
         )
 }

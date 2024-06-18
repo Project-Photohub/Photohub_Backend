@@ -24,8 +24,8 @@ class GroupJpaEntity(
         protected set
 
     @OneToMany(targetEntity = MemberJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])
-    var members: List<MemberJpaEntity> = emptyList()
+    protected var members: List<MemberJpaEntity> = emptyList()
 
     @OneToMany(targetEntity = PhotoCardJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])
-    var photoCards: List<PhotoCardJpaEntity> = emptyList()
+    protected var photoCards: List<PhotoCardJpaEntity> = emptyList()
 }

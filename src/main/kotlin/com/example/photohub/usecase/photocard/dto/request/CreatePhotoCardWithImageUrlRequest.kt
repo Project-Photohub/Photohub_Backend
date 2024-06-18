@@ -1,7 +1,6 @@
 package com.example.photohub.usecase.photocard.dto.request
 
 import jakarta.validation.Valid
-import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Positive
 import jakarta.validation.constraints.Size
 import org.jetbrains.annotations.NotNull
@@ -17,12 +16,10 @@ data class CreatePhotoCardWithImageUrlRequest(
 
     @field:Valid
     @field:NotNull
-    @field:Pattern(regexp = "https?://[\\w\\.-]*")
     val image: String,
 
     @field:Valid
     @field:NotNull
-    @field:Pattern(regexp = "https?://[\\w\\.-]*")
     val backImage: String,
 
     @field:Valid

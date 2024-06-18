@@ -4,7 +4,7 @@ import com.example.photohub.ModelFactory
 import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.data.group.entity.MemberJpaEntity
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.group.model.impl.GroupModelImpl
@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 
 @ModelFactory
 class PhotoCardModelFactoryImpl(
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : PhotoCardModelFactory {
 
     override fun create(
@@ -35,7 +35,7 @@ class PhotoCardModelFactoryImpl(
                 member = (member as MemberModelImpl).memberJpaEntity,
                 createdAt = LocalDateTime.now()
             ),
-            repositoryProvider
+            mappingProvider
         )
 
     override fun update(
@@ -58,6 +58,6 @@ class PhotoCardModelFactoryImpl(
                 createdAt = origin.getCreatedAt(),
                 id = origin.getId()
             ),
-            repositoryProvider
+            mappingProvider
         )
 }

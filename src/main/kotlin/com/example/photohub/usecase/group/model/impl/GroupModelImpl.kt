@@ -2,12 +2,12 @@ package com.example.photohub.usecase.group.model.impl
 
 import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.usecase.exception.BusinessException
-import com.example.photohub.usecase.global.model.RepositoryProvider
+import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 
 class GroupModelImpl(
     val groupJpaEntity: GroupJpaEntity,
-    private val repositoryProvider: RepositoryProvider
+    private val mappingProvider: MappingProvider
 ) : GroupModel {
 
     override fun getId() = groupJpaEntity.id
@@ -18,7 +18,5 @@ class GroupModelImpl(
     override fun getLogo() = groupJpaEntity.logo
 
     override fun getMembers() =
-        repositoryProvider.getMemberRepository().findAllByGroup(getId()).map {
-            MemberModelImpl(it, repositoryProvider)
-        }
+        mappingProvider.getMembersByGroup(this.getId())
 }

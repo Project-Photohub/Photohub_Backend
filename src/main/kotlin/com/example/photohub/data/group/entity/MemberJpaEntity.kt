@@ -27,5 +27,5 @@ class MemberJpaEntity(
         protected set
 
     @OneToMany(targetEntity = PhotoCardJpaEntity::class, mappedBy = "member", cascade = [(CascadeType.ALL)])
-    var photoCards: List<PhotoCardJpaEntity> = emptyList()
+    protected var photoCards: List<PhotoCardJpaEntity> = emptyList()
 }
