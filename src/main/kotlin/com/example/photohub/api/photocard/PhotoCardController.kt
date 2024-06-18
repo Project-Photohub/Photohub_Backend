@@ -1,6 +1,7 @@
 package com.example.photohub.api.photocard
 
 import com.example.photohub.Controller
+import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardRequest
 import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardWithImageUrlRequest
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardMaximumInfoResponse
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.NotNull
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import java.util.*
 
 @RequestMapping("/photo-cards")
@@ -22,6 +24,7 @@ class PhotoCardController(
     private val getRandomPhotoCardUseCase: GetRandomPhotoCardUseCase,
     private val getLatestPhotoCardUseCase: GetLatestPhotoCardUseCase,
     private val createPhotoCardWithImageUrlUseCase: CreatePhotoCardWithImageUrlUseCase,
+    private val createPhotoCardUseCase: CreatePhotoCardUseCase,
     private val likePhotoCardUseCase: LikePhotoCardUseCase
 ) {
 
@@ -60,6 +63,21 @@ class PhotoCardController(
         @RequestBody
         req: CreatePhotoCardWithImageUrlRequest
     ) = createPhotoCardWithImageUrlUseCase(req)
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    fun createPhotoCard(
+        image: MultipartFile,
+        backImage: MultipartFile,
+        @RequestParam
+        name: String,
+        @RequestParam
+        memberId: Long,
+    ) = createPhotoCardUseCase(
+        CreatePhotoCardRequest(
+            image, backImage, name, memberId
+        )
+    )
 
     @PatchMapping("/like/{photoCardId}")
     fun likePhotoCard(
