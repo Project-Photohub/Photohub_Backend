@@ -67,10 +67,18 @@ class PhotoCardController(
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun createPhotoCard(
+        @Valid
+        @NotNull
         image: MultipartFile,
+        @Valid
+        @NotNull
         backImage: MultipartFile,
+        @Valid
+        @NotNull
         @RequestParam
         name: String,
+        @Valid
+        @NotNull
         @RequestParam
         memberId: Long,
     ) = createPhotoCardUseCase(

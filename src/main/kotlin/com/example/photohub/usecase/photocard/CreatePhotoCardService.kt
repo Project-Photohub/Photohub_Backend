@@ -17,7 +17,17 @@ class CreatePhotoCardService(
     private val savePhotoCardPort: SavePhotoCardPort
 ) : CreatePhotoCardUseCase {
 
+    companion object {
+        val allowedFileTypes = listOf("image/jpg", "image/png", "image/jpeg", "image/heic")
+    }
+
     override fun invoke(req: CreatePhotoCardRequest) {
+
+        if (!allowedFileTypes.contains(req.image.contentType) ||
+            !allowedFileTypes.contains(req.backImage.contentType)
+        ) {
+            throw BusinessException(400, "File Type Not Allowed")
+        }
 
         val member = findMemberPort.findById(req.memberId)
             ?: throw BusinessException.MEMBER_NOT_FOUND
