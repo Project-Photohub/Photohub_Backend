@@ -5,3 +5,4 @@ config:
   domain:
     prod: photohub-backend.xquare.app
     stag: photohub-backend-stag.xquare.app
+  
