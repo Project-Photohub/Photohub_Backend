@@ -1,4 +1,4 @@
-package com.example.photohub.infra.security.config
+package com.example.photohub.security.config
 
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.context.annotation.Configuration
