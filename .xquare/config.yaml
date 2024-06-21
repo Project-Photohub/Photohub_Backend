@@ -1,4 +1,5 @@
 config:
+  type: be
   name: Photohub_backend
   port: 8080
   domain:
