@@ -15,20 +15,31 @@ class ExceptionResolverFilterChain(
         }
     }
 
+    private val superFilterChain: ThreadLocal<FilterChain?> = ThreadLocal.withInitial { null }
+
     private val currentIndex: ThreadLocal<Int?> = ThreadLocal.withInitial { null }
+
+    fun doFilterOuter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
+        superFilterChain.set(chain)
+        doFilter(request, response)
+    }
 
     override fun doFilter(request: ServletRequest, response: ServletResponse) {
         if (currentIndex.get() == null) {
             currentIndex.set(0)
         }
 
-        if (currentIndex.get()!! >= filters.size) {
-            currentIndex.set(null)
-            return
-        }
-
         filters[
             currentIndex.get()!!.also { currentIndex.set(it + 1) }
-        ].doFilter(request, response, this)
+        ].doFilter(
+            request,
+            response,
+            if (currentIndex.get()!! == filters.size) {
+                currentIndex.set(null)
+                val it = superFilterChain.get()
+                superFilterChain.set(null)
+                it
+            } else this
+        )
     }
 }

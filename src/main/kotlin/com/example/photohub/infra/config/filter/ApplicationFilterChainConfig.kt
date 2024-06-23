@@ -21,8 +21,8 @@ class ApplicationFilterChainConfig(
         val filterChainProxy = ExceptionResolverFilterChainProxy(
             ExceptionResolverFilterChain(
                 listOf(
-                    ExceptionConvertFilter(objectMapper),
-                    ErrorLogResponseFilter(responseEditorFactory)
+                    ErrorLogResponseFilter(responseEditorFactory),
+                    ExceptionConvertFilter(objectMapper)
                 )
             )
         )

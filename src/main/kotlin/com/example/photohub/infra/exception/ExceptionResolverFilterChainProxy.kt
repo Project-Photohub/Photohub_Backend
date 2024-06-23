@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.web.filter.OncePerRequestFilter
 
 class ExceptionResolverFilterChainProxy(
-    private val filterChain: FilterChain
+    private val filterChain: ExceptionResolverFilterChain
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
@@ -14,8 +14,6 @@ class ExceptionResolverFilterChainProxy(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        this.filterChain.doFilter(request, response)
-
-        filterChain.doFilter(request, response)
+        this.filterChain.doFilterOuter(request, response, filterChain)
     }
 }
