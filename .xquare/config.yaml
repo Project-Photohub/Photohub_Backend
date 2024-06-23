@@ -1,0 +1,8 @@
+config:
+  service_type: be
+  name: photohub-backend
+  port: 8080
+  domain:
+    prod: photohub-backend.xquare.app
+    stag: photohub-backend-stag.xquare.app
+
