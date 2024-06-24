@@ -5,14 +5,12 @@ import com.example.photohub.infra.exception.ErrorLogResponseFilter
 import com.example.photohub.infra.exception.ExceptionConvertFilter
 import com.example.photohub.infra.exception.ExceptionResolverFilterChain
 import com.example.photohub.infra.exception.ExceptionResolverFilterChainProxy
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class ApplicationFilterChainConfig(
-    private val objectMapper: ObjectMapper,
     private val responseEditorFactory: ResponseEditorFactory
 ) {
 
@@ -22,12 +20,12 @@ class ApplicationFilterChainConfig(
             ExceptionResolverFilterChain(
                 listOf(
                     ErrorLogResponseFilter(responseEditorFactory),
-                    ExceptionConvertFilter(objectMapper)
+                    ExceptionConvertFilter()
                 )
             )
         )
 
-        val registration = FilterRegistrationBean<ExceptionResolverFilterChainProxy>(filterChainProxy)
+        val registration = FilterRegistrationBean(filterChainProxy)
 
         registration.order = -2_100_000_000
         return registration
