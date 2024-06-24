@@ -1,12 +1,12 @@
 package com.example.photohub.security.authentication.current
 
-import com.example.photohub.infra.threadlocal.ThreadLocalUser
+import com.example.photohub.infra.threadlocal.ThreadLocalRemovable
 import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthentication
 import com.example.photohub.usecase.exception.StatusCodeException
 import org.springframework.stereotype.Component
 
 @Component
-class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager, ThreadLocalUser {
+class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager, ThreadLocalRemovable {
 
     val authentication: ThreadLocal<UserLazyLoadingAuthentication?> = ThreadLocal.withInitial { null }
 

@@ -1,6 +1,6 @@
 package com.example.photohub.infra.threadlocal
 
-interface ThreadLocalUser {
+interface ThreadLocalRemovable {
 
     fun removeAll()
 }

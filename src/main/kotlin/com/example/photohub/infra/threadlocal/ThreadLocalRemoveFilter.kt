@@ -10,7 +10,7 @@ class ThreadLocalRemoveFilter(
     private val applicationContext: ApplicationContext,
 ) : GenericFilterBean() {
 
-    private lateinit var threadLocalUserBeans: List<ThreadLocalUser>
+    private lateinit var threadLocalRemovableBeans: List<ThreadLocalRemovable>
 
     private var initialized = false
 
@@ -23,11 +23,12 @@ class ThreadLocalRemoveFilter(
             chain.doFilter(request, response)
         } finally {
             if (!initialized) {
-                threadLocalUserBeans = applicationContext.getBeansOfType(ThreadLocalUser::class.java).values.toList()
+                threadLocalRemovableBeans =
+                    applicationContext.getBeansOfType(ThreadLocalRemovable::class.java).values.toList()
                 initialized = true
             }
 
-            threadLocalUserBeans.forEach {
+            threadLocalRemovableBeans.forEach {
                 it.removeAll()
             }
         }
