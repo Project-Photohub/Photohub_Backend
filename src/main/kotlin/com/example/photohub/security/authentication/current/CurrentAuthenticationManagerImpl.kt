@@ -1,11 +1,12 @@
 package com.example.photohub.security.authentication.current
 
+import com.example.photohub.infra.threadlocal.ThreadLocalUser
 import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthentication
 import com.example.photohub.usecase.exception.StatusCodeException
 import org.springframework.stereotype.Component
 
 @Component
-class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager {
+class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager, ThreadLocalUser {
 
     val authentication: ThreadLocal<UserLazyLoadingAuthentication?> = ThreadLocal.withInitial { null }
 
@@ -30,5 +31,10 @@ class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager {
         }
 
         return this.authentication.get()
+    }
+
+    override fun removeAll() {
+        this.authentication.remove()
+        this.initialed.remove()
     }
 }
