@@ -49,6 +49,11 @@ class SecurityException(
     cause: Throwable? = null
 ) : StatusCodeException(statusCode, message, cause) {
     companion object {
+        val UNAUTHORIZED
+            get() = SecurityException(401, "Unauthorized")
+        val INVALID_SESSION_ID
+            get() = SecurityException(401, "Invalid session id.")
+
         val ACCESS_DENIED_TO_RESOURCE
             get() = SecurityException(403, "Access Denied to Resource.")
     }
