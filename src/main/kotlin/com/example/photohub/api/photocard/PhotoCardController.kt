@@ -56,8 +56,8 @@ class PhotoCardController(
     @GetMapping("/latest")
     fun getLatest(): PhotoCardInfoListResponse = getLatestPhotoCardUseCase()
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/url")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // @PostMapping("/url")
     fun createPhotoCardFromUrl(
         @Validated
         @RequestBody
