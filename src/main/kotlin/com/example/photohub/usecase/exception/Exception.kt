@@ -24,11 +24,11 @@ class BusinessException(
             get() = BusinessException(500, "Entity's Id is not assigned BUT Called.")
 
         val GROUP_NOT_FOUND
-            get() = BusinessException(400, "Group Not Found.")
+            get() = BusinessException(404, "Group Not Found.")
         val MEMBER_NOT_FOUND
-            get() = BusinessException(400, "Member Not Found.")
+            get() = BusinessException(404, "Member Not Found.")
         val PHOTO_CARD_NOT_FOUND
-            get() = BusinessException(400, "Photo Card Not Found.")
+            get() = BusinessException(404, "Photo Card Not Found.")
     }
 }
 
