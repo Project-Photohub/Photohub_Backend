@@ -1,44 +1,34 @@
 package com.example.photohub.security.authentication.current
 
+import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthentication
 import com.example.photohub.usecase.exception.StatusCodeException
-import org.springframework.security.authentication.AnonymousAuthenticationToken
-import org.springframework.security.core.Authentication
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
 @Component
 class CurrentAuthenticationManagerImpl : CurrentAuthenticationManager {
 
+    val authentication: ThreadLocal<UserLazyLoadingAuthentication?> = ThreadLocal.withInitial { null }
+
     val initialed: ThreadLocal<Boolean> = ThreadLocal.withInitial { false }
 
-    override fun initial(authentication: Authentication?) {
+    override fun initial(authentication: UserLazyLoadingAuthentication?) {
         if (isInitialed()) {
             throw StatusCodeException(500, "CurrentAuthenticationManager already initialized")
         }
 
-        SecurityContextHolder.getContext().authentication = authentication
+        this.authentication.set(authentication)
 
-        initialed.set(true)
+        this.initialed.set(true)
     }
 
-    override fun isInitialed(): Boolean {
-        if (SecurityContextHolder.getContext().authentication != null) {
-            initialed.set(true)
+    override fun isInitialed(): Boolean =
+        this.initialed.get()
+
+    override fun getCurrent(): UserLazyLoadingAuthentication? {
+        if (!isInitialed()) {
+            throw IllegalStateException("CurrentAuthenticationManager is not initialized")
         }
 
-        return initialed.get()
+        return this.authentication.get()
     }
-
-    override fun getCurrentOrNullIfAnonymous(): Authentication? {
-        val auth = SecurityContextHolder.getContext().authentication
-
-        if (auth is AnonymousAuthenticationToken) {
-            return null
-        }
-
-        return auth
-    }
-
-    override fun getCurrent(): Authentication? =
-        SecurityContextHolder.getContext().authentication
 }
