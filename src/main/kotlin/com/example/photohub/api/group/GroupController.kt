@@ -1,7 +1,6 @@
 package com.example.photohub.api.group
 
 import com.example.photohub.Controller
-import com.example.photohub.security.authentication.annotation.RequireAuthenticated
 import com.example.photohub.security.authentication.annotation.RequireRole
 import com.example.photohub.security.authentication.vo.Role
 import com.example.photohub.usecase.group.dto.response.GroupInfoListDto
@@ -18,7 +17,6 @@ class GroupController(
     private val getAllGroupMemberInfoUseCase: GetAllGroupMemberInfoUseCase
 ) {
 
-    @RequireAuthenticated
     @GetMapping("/all")
     fun getAllGroupInfo(): GroupInfoListDto =
         getAllGroupInfoUseCase()
