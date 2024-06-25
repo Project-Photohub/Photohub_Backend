@@ -23,6 +23,9 @@ class BusinessException(
         val ENTITY_ID_NOT_ASSIGNED_BUT_CALL
             get() = BusinessException(500, "Entity's Id is not assigned BUT Called.")
 
+        val USER_NOT_FOUND
+            get() = BusinessException(404, "User Not Found.")
+
         val GROUP_NOT_FOUND
             get() = BusinessException(404, "Group Not Found.")
         val MEMBER_NOT_FOUND
@@ -53,6 +56,8 @@ class SecurityException(
             get() = SecurityException(401, "Unauthorized")
         val INVALID_SESSION_ID
             get() = SecurityException(401, "Invalid session id.")
+        val PASSWORD_MISMATCH
+            get() = SecurityException(401, "Password Mismatch")
 
         val ACCESS_DENIED_TO_RESOURCE
             get() = SecurityException(403, "Access Denied to Resource.")
