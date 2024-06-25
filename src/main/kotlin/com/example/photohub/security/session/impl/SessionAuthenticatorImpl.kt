@@ -4,7 +4,7 @@ import com.example.photohub.security.authentication.current.CurrentAuthenticatio
 import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthentication
 import com.example.photohub.security.session.SessionAuthenticator
 import com.example.photohub.security.session.SessionManager
-import com.example.photohub.usecase.exception.SecurityException
+import com.example.photohub.security.session.env.SessionEnv
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.stereotype.Component
 
@@ -14,16 +14,12 @@ class SessionAuthenticatorImpl(
     private val currentAuthenticationManager: CurrentAuthenticationManager
 ) : SessionAuthenticator {
 
-    companion object {
-        const val SESSION_COOKIE_NAME = "SESSIONID"
-    }
-
     override fun invoke(request: HttpServletRequest) {
-        val sessionId = request.cookies?.firstOrNull { it.name == SESSION_COOKIE_NAME }?.value
+        val sessionId = request.cookies?.firstOrNull { it.name == SessionEnv.SESSION_COOKIE_NAME }?.value
             ?: return currentAuthenticationManager.initial(null)
 
         val username = sessionManager.getUsernameById(sessionId)
-            ?: throw SecurityException.UNAUTHORIZED
+            ?: return currentAuthenticationManager.initial(null)
 
         currentAuthenticationManager.initial(
             UserLazyLoadingAuthentication(username)

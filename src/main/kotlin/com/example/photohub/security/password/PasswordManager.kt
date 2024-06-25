@@ -10,7 +10,7 @@ class PasswordManager(
 ) : PasswordComparer, PasswordEncoder {
 
     override fun isEqual(encodedPassword: String, password: String): Boolean =
-        passwordEncoder.matches(encodedPassword, password)
+        passwordEncoder.matches(password, encodedPassword)
 
     override fun invoke(rawPassword: String): String =
         passwordEncoder.encode(rawPassword)
