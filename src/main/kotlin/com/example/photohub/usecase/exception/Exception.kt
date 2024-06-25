@@ -1,7 +1,5 @@
 package com.example.photohub.usecase.exception
 
-import org.springframework.web.client.HttpClientErrorException.Forbidden
-
 open class StatusCodeException(
     val statusCode: Int,
     override val message: String,
