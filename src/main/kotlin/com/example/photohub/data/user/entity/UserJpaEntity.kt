@@ -6,7 +6,6 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import java.time.LocalDate
 
-@Deprecated(message = "유저 관련 기능이 제거됨")
 @Entity(name = TableNames.USER)
 class UserJpaEntity(
     name: String,

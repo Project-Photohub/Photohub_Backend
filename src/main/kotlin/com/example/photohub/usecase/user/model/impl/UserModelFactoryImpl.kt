@@ -6,7 +6,6 @@ import com.example.photohub.usecase.user.model.UserModel
 import com.example.photohub.usecase.user.model.UserModelFactory
 import java.time.LocalDate
 
-@Deprecated(message = "유저 관련 기능이 제거됨")
 @ModelFactory
 class UserModelFactoryImpl : UserModelFactory {
 
