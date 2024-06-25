@@ -1,5 +1,7 @@
 package com.example.photohub.usecase.exception
 
+import org.springframework.web.client.HttpClientErrorException.Forbidden
+
 open class StatusCodeException(
     val statusCode: Int,
     override val message: String,
@@ -61,5 +63,7 @@ class SecurityException(
 
         val ACCESS_DENIED_TO_RESOURCE
             get() = SecurityException(403, "Access Denied to Resource.")
+        val FORBIDDEN
+            get() = SecurityException(403, "Forbidden")
     }
 }
