@@ -1,7 +1,7 @@
 package com.example.photohub.security.session.impl
 
 import com.example.photohub.security.authentication.current.CurrentAuthenticationManager
-import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthentication
+import com.example.photohub.security.authentication.vo.UserLazyLoadingAuthenticationFactory
 import com.example.photohub.security.session.SessionAuthenticator
 import com.example.photohub.security.session.SessionManager
 import com.example.photohub.security.session.env.SessionEnv
@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component
 @Component
 class SessionAuthenticatorImpl(
     private val sessionManager: SessionManager,
-    private val currentAuthenticationManager: CurrentAuthenticationManager
+    private val currentAuthenticationManager: CurrentAuthenticationManager,
+    private val userLazyLoadingAuthenticationFactory: UserLazyLoadingAuthenticationFactory
 ) : SessionAuthenticator {
 
     override fun invoke(request: HttpServletRequest) {
@@ -22,7 +23,7 @@ class SessionAuthenticatorImpl(
             ?: return currentAuthenticationManager.initial(null)
 
         currentAuthenticationManager.initial(
-            UserLazyLoadingAuthentication(username)
+            userLazyLoadingAuthenticationFactory.create(username)
         )
     }
 }
