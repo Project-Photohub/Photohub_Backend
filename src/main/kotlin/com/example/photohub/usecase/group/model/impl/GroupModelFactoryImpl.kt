@@ -11,12 +11,11 @@ class GroupModelFactoryImpl(
     private val mappingProvider: MappingProvider
 ) : GroupModelFactory {
 
-    override fun create(id: Long?, name: String, logo: String): GroupModel =
+    override fun create(name: String, logo: String): GroupModel =
         GroupModelImpl(
             GroupJpaEntity(
                 name = name,
-                logo = logo,
-                id = id
+                logo = logo
             ),
             mappingProvider
         )
