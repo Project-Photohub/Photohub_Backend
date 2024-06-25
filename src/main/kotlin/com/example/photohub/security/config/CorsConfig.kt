@@ -11,7 +11,11 @@ class CorsConfig : CorsConfigurationSource {
     override fun getCorsConfiguration(request: HttpServletRequest): CorsConfiguration =
         CorsConfiguration().apply {
 
-            allowedOrigins = listOf("http://localhost:5173")
+            allowedOrigins = listOf(
+                "http://localhost:5173",
+                "https://photohub.xquare.app",
+                "https://photohub-stag.xquare.app"
+            )
             setAllowedMethods(listOf("*"))
             allowCredentials = true
             allowedHeaders = listOf("*")
