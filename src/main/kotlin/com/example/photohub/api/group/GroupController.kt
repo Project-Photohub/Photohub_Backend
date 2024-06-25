@@ -1,6 +1,8 @@
 package com.example.photohub.api.group
 
 import com.example.photohub.Controller
+import com.example.photohub.security.authentication.annotation.RequireRole
+import com.example.photohub.security.authentication.vo.Role
 import com.example.photohub.usecase.group.dto.response.GroupInfoListDto
 import com.example.photohub.usecase.group.dto.response.GroupMemberInfoListDto
 import com.example.photohub.usecase.group.port.`in`.GetAllGroupInfoUseCase
@@ -19,6 +21,7 @@ class GroupController(
     fun getAllGroupInfo(): GroupInfoListDto =
         getAllGroupInfoUseCase()
 
+    @RequireRole(Role.ADMIN)
     @GetMapping("/all/member")
     fun getAllGroupMemberInfo(): GroupMemberInfoListDto =
         getAllGroupMemberInfoUseCase()
