@@ -19,7 +19,7 @@ class SessionAuthenticatorImpl(
     }
 
     override fun invoke(request: HttpServletRequest) {
-        val sessionId = request.cookies.firstOrNull { it.name == SESSION_COOKIE_NAME }?.value
+        val sessionId = request.cookies?.firstOrNull { it.name == SESSION_COOKIE_NAME }?.value
             ?: return currentAuthenticationManager.initial(null)
 
         val username = sessionManager.getUsernameById(sessionId)
