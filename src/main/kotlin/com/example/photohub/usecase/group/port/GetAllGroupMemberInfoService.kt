@@ -1,7 +1,6 @@
 package com.example.photohub.usecase.group.port
 
 import com.example.photohub.ReadOnlyUseCase
-import com.example.photohub.usecase.global.OrderScatter
 import com.example.photohub.usecase.group.dto.response.GroupInfo
 import com.example.photohub.usecase.group.dto.response.GroupMemberInfo
 import com.example.photohub.usecase.group.dto.response.GroupMemberInfoListDto
@@ -16,9 +15,7 @@ class GetAllGroupMemberInfoService(
 
     override fun invoke(): GroupMemberInfoListDto =
         GroupMemberInfoListDto(
-            OrderScatter(
-                findGroupPort.findAllGroup()
-            ).map { group ->
+            findGroupPort.findAllGroup().map { group ->
                 GroupMemberInfo(
                     GroupInfo.of(group),
                     group.getMembers().map { member ->
