@@ -89,7 +89,6 @@ class PhotoCardController(
         )
     )
 
-    @RequireRole(Role.ADMIN)
     @PatchMapping("/like/{photoCardId}")
     fun likePhotoCard(
         @Valid

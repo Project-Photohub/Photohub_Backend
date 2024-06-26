@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.photocard
 
 import com.example.photohub.ReadOnlyUseCase
+import com.example.photohub.usecase.global.DsmPhotoCardRemover
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfo
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
 import com.example.photohub.usecase.photocard.port.`in`.GetRandomPhotoCardUseCase
@@ -13,7 +14,9 @@ class GetRandomPhotoCardService(
 
     override fun invoke(): PhotoCardInfoListResponse =
         PhotoCardInfoListResponse(
-            findPhotoCardPort.findAllOrderRandomLimit30().map {
+            DsmPhotoCardRemover.removeDSMPhotoCard(
+                findPhotoCardPort.findAllOrderRandomLimit30()
+            ).map {
                 PhotoCardInfo.of(it)
             }
         )

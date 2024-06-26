@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.photocard
 
 import com.example.photohub.ReadOnlyUseCase
+import com.example.photohub.usecase.global.DsmPhotoCardRemover
 import com.example.photohub.usecase.global.OrderScatter
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfo
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
@@ -13,7 +14,9 @@ class GetLatestPhotoCardService(
 ) : GetLatestPhotoCardUseCase {
 
     override fun invoke(): PhotoCardInfoListResponse {
-        val photoCards = findPhotoCardPort.findAllOrderCreateAtLimit30().map {
+        val photoCards = DsmPhotoCardRemover.removeDSMPhotoCard(
+            findPhotoCardPort.findAllOrderCreateAtLimit30()
+        ).map {
             PhotoCardInfo.of(it)
         }
 

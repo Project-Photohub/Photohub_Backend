@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.photocard
 
 import com.example.photohub.ReadOnlyUseCase
+import com.example.photohub.usecase.global.DsmPhotoCardRemover
 import com.example.photohub.usecase.global.OrderScatter
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfo
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
@@ -14,7 +15,9 @@ class GetPopularPhotoCardService(
 
     override fun invoke(): PhotoCardInfoListResponse {
 
-        val photoCards = findPhotoCardPort.findAllOrderLikeCountLimit30().map {
+        val photoCards = DsmPhotoCardRemover.removeDSMPhotoCard(
+            findPhotoCardPort.findAllOrderLikeCountLimit30()
+        ).map {
             PhotoCardInfo.of(it)
         }
 
