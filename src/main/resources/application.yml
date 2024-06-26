@@ -23,4 +23,4 @@ aws:
 
 server:
   tomcat:
-    max-http-form-post-size: 30MB
+    max-http-form-post-size: 10 0MB
