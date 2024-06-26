@@ -13,6 +13,7 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
 
+
 aws:
   s3:
     access-key: ${S3_ACCESS_KEY}
@@ -21,3 +22,7 @@ aws:
     region: ${S3_REGION}
     file-name-prefix: ${S3_PREFIX}
     bucket-url: ${S3_BUCKET_URL}
+
+server:
+  tomcat:
+    max-http-form-post-size: 20MB
