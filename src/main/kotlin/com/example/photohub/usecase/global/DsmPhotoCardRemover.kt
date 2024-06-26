@@ -4,7 +4,7 @@ import com.example.photohub.usecase.photocard.model.PhotoCardModel
 
 object DsmPhotoCardRemover {
 
-    private const val STAG_DSM_GROUP_ID = 8L
+    private const val STAG_DSM_GROUP_ID = 5L
     private const val PROD_DSM_GROUP_ID = 0L
 
     fun removeDSMPhotoCard(photoCards: List<PhotoCardModel>): List<PhotoCardModel> {
