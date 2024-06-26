@@ -1,6 +1,8 @@
 package com.example.photohub.api.photocard
 
 import com.example.photohub.Controller
+import com.example.photohub.security.authentication.annotation.RequireRole
+import com.example.photohub.security.authentication.vo.Role
 import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardRequest
 import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardWithImageUrlRequest
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
@@ -87,6 +89,7 @@ class PhotoCardController(
         )
     )
 
+    @RequireRole(Role.ADMIN)
     @PatchMapping("/like/{photoCardId}")
     fun likePhotoCard(
         @Valid
