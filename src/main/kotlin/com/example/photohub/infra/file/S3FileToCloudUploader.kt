@@ -27,6 +27,6 @@ class S3FileToCloudUploader(
             RequestBody.fromInputStream(file.inputStream, file.size)
         )
 
-        return s3Properties.bucketUrl + "/" + fileName
+        return s3Properties.bucketUrl + fileName
     }
 }
