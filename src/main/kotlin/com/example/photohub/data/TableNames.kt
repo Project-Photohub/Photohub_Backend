@@ -10,4 +10,7 @@ object TableNames {
 
     const val PHOTO_CARD = "tbl_photo_card"
     const val PHOTO_CARD_LIKE = "tbl_photo_card_like"
+
+    const val ADD_GROUP_REQUEST = "tbl_add_group_request"
+    const val ADD_MEMBER_REQUEST = "tbl_add_member_request"
 }

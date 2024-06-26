@@ -13,7 +13,6 @@ class MemberModelFactoryImpl(
 ) : MemberModelFactory {
 
     override fun create(
-        id: Long?,
         name: String,
         nickname: String?,
         groupModel: GroupModel
@@ -22,7 +21,6 @@ class MemberModelFactoryImpl(
             MemberJpaEntity(
                 name = name,
                 nickname = nickname,
-                id = id,
                 group = (groupModel as GroupModelImpl).groupJpaEntity
             ),
             mappingProvider

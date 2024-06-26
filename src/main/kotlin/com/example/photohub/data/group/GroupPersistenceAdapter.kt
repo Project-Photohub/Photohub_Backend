@@ -6,12 +6,20 @@ import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
 import com.example.photohub.usecase.group.model.impl.GroupModelImpl
 import com.example.photohub.usecase.group.port.out.persistence.FindGroupPort
+import com.example.photohub.usecase.group.port.out.persistence.SaveGroupPort
 
 @PersistenceAdapter
 class GroupPersistenceAdapter(
     private val groupRepository: GroupRepository,
     private val mappingProvider: MappingProvider
-) : FindGroupPort {
+) : SaveGroupPort,
+    FindGroupPort {
+
+    override fun save(group: GroupModel): GroupModel =
+        GroupModelImpl(
+            groupRepository.save((group as GroupModelImpl).groupJpaEntity),
+            mappingProvider
+        )
 
     override fun findById(id: Long): GroupModel? =
         groupRepository.findById(id)?.run {

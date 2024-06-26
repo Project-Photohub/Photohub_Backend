@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param
 @org.springframework.stereotype.Repository
 interface MemberRepository : Repository<MemberJpaEntity, Long?> {
 
+    fun save(entity: MemberJpaEntity): MemberJpaEntity
+
     fun findById(id: Long): MemberJpaEntity?
 
     @Query(
