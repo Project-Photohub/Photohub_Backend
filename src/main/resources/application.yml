@@ -2,7 +2,6 @@ spring:
   application:
     name: Photohub_Backend
 
-
   jpa:
     show-sql: true
     hibernate:
@@ -12,7 +11,6 @@ spring:
     url: ${DB_URL}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
-
 
 aws:
   s3:
@@ -26,4 +24,3 @@ aws:
 server:
   tomcat:
     max-http-form-post-size: 30MB
-    max-swallow-size: 30MB
