@@ -24,3 +24,4 @@ aws:
 server:
   tomcat:
     max-http-form-post-size: 10000000
+    max-swallow-size: 10000000
