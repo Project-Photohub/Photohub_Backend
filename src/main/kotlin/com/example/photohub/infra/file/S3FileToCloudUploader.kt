@@ -1,5 +1,6 @@
 package com.example.photohub.infra.file
 
+import com.example.photohub.global.Path
 import com.example.photohub.infra.env.file.S3Properties
 import com.example.photohub.usecase.global.file.port.out.UploadFileToCloudPort
 import org.springframework.stereotype.Component
@@ -15,7 +16,7 @@ class S3FileToCloudUploader(
 ) : UploadFileToCloudPort {
 
     override fun invoke(file: MultipartFile): String {
-        val fileName: String = s3Properties.fileNamePrefix + FileNameGenerator()
+        val fileName: String = Path.join(s3Properties.fileNamePrefix, FileNameGenerator())
 
         s3Client.putObject(
             PutObjectRequest.builder()
@@ -27,6 +28,6 @@ class S3FileToCloudUploader(
             RequestBody.fromInputStream(file.inputStream, file.size)
         )
 
-        return s3Properties.bucketUrl + fileName
+        return Path.join(s3Properties.bucketUrl, fileName)
     }
 }
