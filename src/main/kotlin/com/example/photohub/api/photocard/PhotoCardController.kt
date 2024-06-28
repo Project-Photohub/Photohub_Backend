@@ -1,8 +1,6 @@
 package com.example.photohub.api.photocard
 
 import com.example.photohub.Controller
-import com.example.photohub.security.authentication.annotation.RequireRole
-import com.example.photohub.security.authentication.vo.Role
 import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardRequest
 import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardWithImageUrlRequest
 import com.example.photohub.usecase.photocard.dto.response.PhotoCardInfoListResponse
@@ -10,6 +8,7 @@ import com.example.photohub.usecase.photocard.dto.response.PhotoCardMaximumInfoR
 import com.example.photohub.usecase.photocard.port.`in`.*
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Positive
+import jakarta.validation.constraints.Size
 import org.jetbrains.annotations.NotNull
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
@@ -77,10 +76,12 @@ class PhotoCardController(
         backImage: MultipartFile,
         @Valid
         @NotNull
+        @Size(min = 1, max = 30)
         @RequestParam
         name: String,
         @Valid
         @NotNull
+        @Positive
         @RequestParam
         memberId: Long,
     ) = createPhotoCardUseCase(
