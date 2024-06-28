@@ -41,7 +41,7 @@ class AuthController(
             SessionEnv.SESSION_COOKIE_NAME,
             sessionId
         )
-        cookie.path = "/"
+        cookie.path = "/*"
 
         response.addCookie(cookie)
     }
