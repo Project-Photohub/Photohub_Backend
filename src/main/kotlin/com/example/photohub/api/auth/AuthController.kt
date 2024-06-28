@@ -3,6 +3,7 @@ package com.example.photohub.api.auth
 import com.example.photohub.security.session.env.SessionEnv
 import com.example.photohub.usecase.auth.dto.request.LoginRequest
 import com.example.photohub.usecase.auth.dto.request.SignupRequest
+import com.example.photohub.usecase.auth.dto.response.SessionIdResponse
 import com.example.photohub.usecase.auth.port.`in`.LoginUseCase
 import com.example.photohub.usecase.auth.port.`in`.SignupUseCase
 import jakarta.servlet.http.Cookie
@@ -34,15 +35,18 @@ class AuthController(
         @RequestBody
         req: LoginRequest,
         response: HttpServletResponse
-    ) {
-        val sessionId = loginUseCase(req).sessionId
+    ): SessionIdResponse {
+        val sessionIdResponse = loginUseCase(req)
+        val sessionId = sessionIdResponse.sessionId
 
         val cookie = Cookie(
             SessionEnv.SESSION_COOKIE_NAME,
             sessionId
         )
-        cookie.path = "/*"
+        cookie.path = "/"
 
         response.addCookie(cookie)
+
+        return sessionIdResponse
     }
 }
