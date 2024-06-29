@@ -40,7 +40,6 @@ class CreatePhotoCardService(
                 name = name,
                 image = uploadedImageUrl,
                 backImage = uploadedBackImageUrl,
-                group = member.getGroup(),
                 member = member,
             )
         }

@@ -28,7 +28,7 @@ class PhotoCardModelImpl(
     override fun getLikeCount(): Long = photoCardJpaEntity.likeCount
 
     override fun getGroup(): GroupModel =
-        GroupModelImpl(photoCardJpaEntity.group, mappingProvider)
+        GroupModelImpl(photoCardJpaEntity.member.group, mappingProvider)
 
     override fun getMember(): MemberModel =
         MemberModelImpl(photoCardJpaEntity.member, mappingProvider)

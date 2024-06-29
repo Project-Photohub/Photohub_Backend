@@ -2,7 +2,6 @@ package com.example.photohub.data.group.entity
 
 import com.example.photohub.data.TableNames
 import com.example.photohub.data.base.entity.BaseLongIdEntity
-import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -25,7 +24,4 @@ class GroupJpaEntity(
 
     @OneToMany(targetEntity = MemberJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])
     protected var members: List<MemberJpaEntity> = emptyList()
-
-    @OneToMany(targetEntity = PhotoCardJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])
-    protected var photoCards: List<PhotoCardJpaEntity> = emptyList()
 }

@@ -25,7 +25,6 @@ class CreatePhotoCardWithImageUrlService(
                 name = name,
                 image = image,
                 backImage = backImage,
-                group = member.getGroup(),
                 member = member,
             )
         }
