@@ -30,6 +30,7 @@ class PhotoCardModelFactoryImpl(
                 image = image,
                 backImage = backImage,
                 likeCount = 0,
+                group = (member.getGroup() as GroupModelImpl).groupJpaEntity,
                 member = (member as MemberModelImpl).memberJpaEntity,
                 uploader = (uploader as UserModelImpl).userJpaEntity,
                 createdAt = LocalDateTime.now()
@@ -50,6 +51,7 @@ class PhotoCardModelFactoryImpl(
                 image = image ?: origin.getImage(),
                 backImage = backImage ?: origin.getBackImage(),
                 likeCount = likeCount ?: origin.getLikeCount(),
+                group = (origin.getGroup() as GroupModelImpl).groupJpaEntity,
                 member = (origin.getMember() as MemberModelImpl).memberJpaEntity,
                 uploader = (origin.getUploader() as UserModelImpl).userJpaEntity,
                 createdAt = origin.getCreatedAt(),
