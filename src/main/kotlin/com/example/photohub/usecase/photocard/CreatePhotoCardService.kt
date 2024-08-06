@@ -8,13 +8,15 @@ import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardRequest
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
 import com.example.photohub.usecase.photocard.port.`in`.CreatePhotoCardUseCase
 import com.example.photohub.usecase.photocard.port.out.persistence.SavePhotoCardPort
+import com.example.photohub.usecase.user.port.out.GetCurrentUserPort
 
 @UseCase
 class CreatePhotoCardService(
     private val findMemberPort: FindMemberPort,
     private val uploadFileToCloudPort: UploadFileToCloudPort,
     private val photoCardModelFactory: PhotoCardModelFactory,
-    private val savePhotoCardPort: SavePhotoCardPort
+    private val savePhotoCardPort: SavePhotoCardPort,
+    private val getCurrentUserPort: GetCurrentUserPort
 ) : CreatePhotoCardUseCase {
 
     companion object {
@@ -41,6 +43,7 @@ class CreatePhotoCardService(
                 image = uploadedImageUrl,
                 backImage = uploadedBackImageUrl,
                 member = member,
+                uploader = getCurrentUserPort()
             )
         }
 

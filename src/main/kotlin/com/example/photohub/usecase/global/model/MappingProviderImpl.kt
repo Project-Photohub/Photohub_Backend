@@ -27,4 +27,11 @@ class MappingProviderImpl(
                 it, this
             )
         }
+
+    override fun getPhotoCardsByUploaderId(uploaderId: Long): List<PhotoCardModel> =
+        photoCardRepository.findAllByUploader(uploaderId).map {
+            PhotoCardModelImpl(
+                it, this
+            )
+        }
 }

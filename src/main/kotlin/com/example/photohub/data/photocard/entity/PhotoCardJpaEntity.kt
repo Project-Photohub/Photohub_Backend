@@ -2,7 +2,9 @@ package com.example.photohub.data.photocard.entity
 
 import com.example.photohub.data.TableNames
 import com.example.photohub.data.base.entity.BaseUuidEntity
+import com.example.photohub.data.group.entity.GroupJpaEntity
 import com.example.photohub.data.group.entity.MemberJpaEntity
+import com.example.photohub.data.user.entity.UserJpaEntity
 import jakarta.persistence.*
 import java.time.LocalDateTime
 import java.util.*
@@ -13,7 +15,9 @@ class PhotoCardJpaEntity(
     image: String,
     backImage: String,
     likeCount: Long = 0,
+    group: GroupJpaEntity,
     member: MemberJpaEntity,
+    uploader: UserJpaEntity,
     createdAt: LocalDateTime = LocalDateTime.now(),
     id: UUID? = null
 ) : BaseUuidEntity(id) {
@@ -35,8 +39,18 @@ class PhotoCardJpaEntity(
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", updatable = true, nullable = false)
+    var group: GroupJpaEntity = group
+        protected set
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", updatable = true, nullable = false)
     var member: MemberJpaEntity = member
+        protected set
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uploader_id", updatable = false, nullable = false)
+    var uploader: UserJpaEntity = uploader
         protected set
 
     @Column(name = "created_at", updatable = false, nullable = false)

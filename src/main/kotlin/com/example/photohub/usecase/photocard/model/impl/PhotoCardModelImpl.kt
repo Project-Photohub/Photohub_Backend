@@ -8,6 +8,8 @@ import com.example.photohub.usecase.group.model.MemberModel
 import com.example.photohub.usecase.group.model.impl.GroupModelImpl
 import com.example.photohub.usecase.group.model.impl.MemberModelImpl
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
+import com.example.photohub.usecase.user.model.UserModel
+import com.example.photohub.usecase.user.model.impl.UserModelImpl
 import java.time.LocalDateTime
 import java.util.*
 
@@ -28,10 +30,13 @@ class PhotoCardModelImpl(
     override fun getLikeCount(): Long = photoCardJpaEntity.likeCount
 
     override fun getGroup(): GroupModel =
-        GroupModelImpl(photoCardJpaEntity.member.group, mappingProvider)
+        GroupModelImpl(photoCardJpaEntity.group, mappingProvider)
 
     override fun getMember(): MemberModel =
         MemberModelImpl(photoCardJpaEntity.member, mappingProvider)
+
+    override fun getUploader(): UserModel =
+        UserModelImpl(photoCardJpaEntity.uploader, mappingProvider)
 
     override fun getCreatedAt(): LocalDateTime = photoCardJpaEntity.createdAt
 }

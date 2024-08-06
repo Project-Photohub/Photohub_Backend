@@ -52,4 +52,16 @@ interface PhotoCardRepository : Repository<PhotoCardJpaEntity, UUID?> {
         @Param("memberId")
         memberId: Long
     ): List<PhotoCardJpaEntity>
+
+    @Query(
+        value = "SELECT * " +
+                "FROM ${TableNames.PHOTO_CARD} p " +
+                "WHERE p.uploader_id = :uploaderId " +
+                "LIMIT 30",
+        nativeQuery = true
+    )
+    fun findAllByUploader(
+        @Param("uploaderId")
+        uploaderId: Long
+    ): List<PhotoCardJpaEntity>
 }
