@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.user.model
 
 import com.example.photohub.security.authentication.vo.Role
+import com.example.photohub.usecase.photocard.model.PhotoCardModel
 
 interface UserModel {
 
@@ -11,4 +12,6 @@ interface UserModel {
     fun getPassword(): String
 
     fun getRole(): Role
+
+    fun getUploadedPhotoCards(): List<PhotoCardModel>
 }

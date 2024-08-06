@@ -8,4 +8,6 @@ interface MappingProvider {
     fun getMembersByGroup(groupId: Long): List<MemberModel>
 
     fun getPhotoCardsByMember(memberId: Long): List<PhotoCardModel>
+
+    fun getPhotoCardsByUploaderId(uploaderId: Long): List<PhotoCardModel>
 }
