@@ -7,12 +7,14 @@ import com.example.photohub.usecase.photocard.dto.request.CreatePhotoCardWithIma
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
 import com.example.photohub.usecase.photocard.port.`in`.CreatePhotoCardWithImageUrlUseCase
 import com.example.photohub.usecase.photocard.port.out.persistence.SavePhotoCardPort
+import com.example.photohub.usecase.user.port.out.GetCurrentUserPort
 
 @UseCase
 class CreatePhotoCardWithImageUrlService(
     private val findMemberPort: FindMemberPort,
     private val savePhotoCardPort: SavePhotoCardPort,
-    private val photoCardModelFactory: PhotoCardModelFactory
+    private val photoCardModelFactory: PhotoCardModelFactory,
+    private val getCurrentUserPort: GetCurrentUserPort
 ) : CreatePhotoCardWithImageUrlUseCase {
 
     override fun invoke(request: CreatePhotoCardWithImageUrlRequest) {
@@ -26,6 +28,7 @@ class CreatePhotoCardWithImageUrlService(
                 image = image,
                 backImage = backImage,
                 member = member,
+                uploader = getCurrentUserPort()
             )
         }
 

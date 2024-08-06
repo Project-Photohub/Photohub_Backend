@@ -4,9 +4,12 @@ import com.example.photohub.ModelFactory
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
 import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.MemberModel
+import com.example.photohub.usecase.group.model.impl.GroupModelImpl
 import com.example.photohub.usecase.group.model.impl.MemberModelImpl
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.PhotoCardModelFactory
+import com.example.photohub.usecase.user.model.UserModel
+import com.example.photohub.usecase.user.model.impl.UserModelImpl
 import java.time.LocalDateTime
 
 @ModelFactory
@@ -19,6 +22,7 @@ class PhotoCardModelFactoryImpl(
         image: String,
         backImage: String,
         member: MemberModel,
+        uploader: UserModel,
     ): PhotoCardModel =
         PhotoCardModelImpl(
             PhotoCardJpaEntity(
@@ -27,6 +31,7 @@ class PhotoCardModelFactoryImpl(
                 backImage = backImage,
                 likeCount = 0,
                 member = (member as MemberModelImpl).memberJpaEntity,
+                uploader = (uploader as UserModelImpl).userJpaEntity,
                 createdAt = LocalDateTime.now()
             ),
             mappingProvider
@@ -46,6 +51,7 @@ class PhotoCardModelFactoryImpl(
                 backImage = backImage ?: origin.getBackImage(),
                 likeCount = likeCount ?: origin.getLikeCount(),
                 member = (origin.getMember() as MemberModelImpl).memberJpaEntity,
+                uploader = (origin.getUploader() as UserModelImpl).userJpaEntity,
                 createdAt = origin.getCreatedAt(),
                 id = origin.getId()
             ),
