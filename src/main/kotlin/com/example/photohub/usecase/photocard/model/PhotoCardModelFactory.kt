@@ -7,16 +7,16 @@ interface PhotoCardModelFactory {
 
     fun create(
         name: String,
-        image: String,
-        backImage: String,
+        imageId: String,
+        backImageId: String,
         member: MemberModel,
         uploader: UserModel
     ): PhotoCardModel
 
     fun update(
         name: String? = null,
-        image: String? = null,
-        backImage: String? = null,
+        imageId: String? = null,
+        backImageId: String? = null,
         likeCount: Long? = null,
         origin: PhotoCardModel
     ): PhotoCardModel

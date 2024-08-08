@@ -34,14 +34,14 @@ class CreatePhotoCardService(
         val member = findMemberPort.findById(req.memberId)
             ?: throw BusinessException.MEMBER_NOT_FOUND
 
-        val uploadedImageUrl = fileUploadPort.uploadFile(req.image)
-        val uploadedBackImageUrl = fileUploadPort.uploadFile(req.backImage)
+        val uploadedImageId = fileUploadPort.uploadFile(req.image)
+        val uploadedBackImageId = fileUploadPort.uploadFile(req.backImage)
 
         val model = req.run {
             photoCardModelFactory.create(
                 name = name,
-                image = uploadedImageUrl,
-                backImage = uploadedBackImageUrl,
+                imageId = uploadedImageId,
+                backImageId = uploadedBackImageId,
                 member = member,
                 uploader = getCurrentUserPort()
             )

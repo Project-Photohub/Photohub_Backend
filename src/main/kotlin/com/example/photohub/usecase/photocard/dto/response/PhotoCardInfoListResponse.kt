@@ -15,7 +15,7 @@ data class PhotoCardInfo(
         fun of(photoCardModel: PhotoCardModel): PhotoCardInfo = photoCardModel.run {
             PhotoCardInfo(
                 id = getId(),
-                image = getImage()
+                image = getImageUrl()
             )
         }
     }
