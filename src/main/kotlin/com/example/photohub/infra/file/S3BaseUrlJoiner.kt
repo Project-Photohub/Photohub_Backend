@@ -18,4 +18,8 @@ object S3BaseUrlJoiner {
     fun join(s3ObjectKey: String): String {
         return Path.join(baseUrl, s3ObjectKey)
     }
+
+    fun detach(s3ObjectUrl: String): String {
+        return s3ObjectUrl.removePrefix(baseUrl).removePrefix("/")
+    }
 }

@@ -2,18 +2,20 @@ package com.example.photohub.infra.file
 
 import com.example.photohub.global.Path
 import com.example.photohub.infra.env.file.S3Properties
+import com.example.photohub.usecase.global.file.port.out.DeleteFilePort
 import com.example.photohub.usecase.global.file.port.out.FileUploadPort
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest
 import software.amazon.awssdk.services.s3.model.PutObjectRequest
 
 @Component
 class S3Manager(
     private val s3Client: S3Client,
     private val s3Properties: S3Properties
-) : FileUploadPort {
+) : FileUploadPort, DeleteFilePort {
 
     override fun uploadFile(file: MultipartFile): String {
 
@@ -30,5 +32,17 @@ class S3Manager(
         )
 
         return fileId
+    }
+
+    override fun deleteFile(fileUrl: String) {
+
+        val fileId = S3BaseUrlJoiner.detach(fileUrl)
+
+        s3Client.deleteObject(
+            DeleteObjectRequest.builder()
+                .key(Path.join(s3Properties.fileNamePrefix, fileId))
+                .bucket(s3Properties.bucketName)
+                .build()
+        ).deleteMarker()
     }
 }
