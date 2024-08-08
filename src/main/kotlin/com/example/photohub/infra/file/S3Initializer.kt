@@ -13,7 +13,7 @@ class S3Initializer(
     override fun postProcessBeforeInitialization(bean: Any, beanName: String): Any? {
         if (bean is S3Manager) {
             S3BaseUrlJoiner.init(
-                Path.join(s3Properties.bucketUrl, s3Properties.bucketName)
+                Path.join(s3Properties.bucketUrl, s3Properties.fileNamePrefix)
             )
         }
 

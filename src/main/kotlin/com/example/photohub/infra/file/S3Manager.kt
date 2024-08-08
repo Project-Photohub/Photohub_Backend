@@ -1,5 +1,6 @@
 package com.example.photohub.infra.file
 
+import com.example.photohub.global.Path
 import com.example.photohub.infra.env.file.S3Properties
 import com.example.photohub.usecase.global.file.port.out.FileUploadPort
 import org.springframework.stereotype.Component
@@ -23,7 +24,7 @@ class S3Manager(
                 .bucket(s3Properties.bucketName)
                 .contentType(file.contentType)
                 .contentLength(file.size)
-                .key(fileId)
+                .key(Path.join(s3Properties.fileNamePrefix, fileId))
                 .build(),
             RequestBody.fromInputStream(file.inputStream, file.size)
         )
