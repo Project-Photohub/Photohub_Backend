@@ -48,8 +48,6 @@ allOpen {
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
     annotations("org.springframework.data.redis.core.RedisHash")
-
-
 }
 
 noArg {
