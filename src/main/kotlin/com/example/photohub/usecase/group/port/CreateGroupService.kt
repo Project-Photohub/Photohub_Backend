@@ -15,12 +15,12 @@ class CreateGroupService(
 ) : CreateGroupUseCase {
 
     override fun invoke(req: CreateGroupRequest) {
-        val logoUrl = fileUploadPort.uploadFile(req.logo)
+        val logoId = fileUploadPort.uploadFile(req.logo)
 
         saveGroupPort.save(
             groupModelFactory.create(
                 name = req.name,
-                logo = logoUrl
+                logoId = logoId
             )
         )
     }

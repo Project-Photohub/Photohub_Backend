@@ -6,7 +6,7 @@ interface GroupModel {
 
     fun getName(): String
 
-    fun getLogo(): String
+    fun getLogoUrl(): String
 
     fun getMembers(): List<MemberModel>
 }

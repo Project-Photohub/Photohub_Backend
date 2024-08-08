@@ -4,6 +4,6 @@ interface GroupModelFactory {
 
     fun create(
         name: String,
-        logo: String
+        logoId: String
     ): GroupModel
 }

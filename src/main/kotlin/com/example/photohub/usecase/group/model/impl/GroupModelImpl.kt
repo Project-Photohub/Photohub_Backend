@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.group.model.impl
 
 import com.example.photohub.data.group.entity.GroupJpaEntity
+import com.example.photohub.infra.file.S3BaseUrlJoiner
 import com.example.photohub.usecase.exception.BusinessException
 import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
@@ -15,7 +16,7 @@ class GroupModelImpl(
 
     override fun getName() = groupJpaEntity.name
 
-    override fun getLogo() = groupJpaEntity.logo
+    override fun getLogoUrl() = S3BaseUrlJoiner.join(groupJpaEntity.logoId)
 
     override fun getMembers() =
         mappingProvider.getMembersByGroup(this.getId())
