@@ -12,9 +12,9 @@ interface PhotoCardModel {
 
     fun getName(): String
 
-    fun getImage(): String
+    fun getImageUrl(): String
 
-    fun getBackImage(): String
+    fun getBackImageUrl(): String
 
     fun getLikeCount(): Long
 

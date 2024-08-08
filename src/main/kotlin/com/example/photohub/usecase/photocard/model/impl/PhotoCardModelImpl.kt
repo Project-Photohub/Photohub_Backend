@@ -1,6 +1,7 @@
 package com.example.photohub.usecase.photocard.model.impl
 
 import com.example.photohub.data.photocard.entity.PhotoCardJpaEntity
+import com.example.photohub.infra.file.S3BaseUrlJoiner
 import com.example.photohub.usecase.exception.BusinessException
 import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.group.model.GroupModel
@@ -23,9 +24,11 @@ class PhotoCardModelImpl(
 
     override fun getName(): String = photoCardJpaEntity.name
 
-    override fun getImage(): String = photoCardJpaEntity.image
+    override fun getImageUrl(): String =
+        S3BaseUrlJoiner.join(photoCardJpaEntity.imageId)
 
-    override fun getBackImage(): String = photoCardJpaEntity.backImage
+    override fun getBackImageUrl(): String =
+        S3BaseUrlJoiner.join(photoCardJpaEntity.backImageId)
 
     override fun getLikeCount(): Long = photoCardJpaEntity.likeCount
 

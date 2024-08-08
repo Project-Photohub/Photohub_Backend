@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany
 @Entity(name = TableNames.GROUP)
 class GroupJpaEntity(
     name: String,
-    logo: String,
+    logoId: String,
     id: Long? = null
 ) : BaseLongIdEntity(id) {
 
@@ -18,8 +18,8 @@ class GroupJpaEntity(
     var name: String = name
         protected set
 
-    @Column(name = "logo", updatable = true, nullable = false)
-    var logo: String = logo
+    @Column(name = "logo_id", updatable = true, nullable = false)
+    var logoId: String = logoId
         protected set
 
     @OneToMany(targetEntity = MemberJpaEntity::class, mappedBy = "group", cascade = [(CascadeType.ALL)])

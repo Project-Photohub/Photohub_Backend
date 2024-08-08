@@ -19,16 +19,16 @@ class PhotoCardModelFactoryImpl(
 
     override fun create(
         name: String,
-        image: String,
-        backImage: String,
+        imageId: String,
+        backImageId: String,
         member: MemberModel,
         uploader: UserModel,
     ): PhotoCardModel =
         PhotoCardModelImpl(
             PhotoCardJpaEntity(
                 name = name,
-                image = image,
-                backImage = backImage,
+                imageId = imageId,
+                backImageId = backImageId,
                 likeCount = 0,
                 group = (member.getGroup() as GroupModelImpl).groupJpaEntity,
                 member = (member as MemberModelImpl).memberJpaEntity,
@@ -40,16 +40,16 @@ class PhotoCardModelFactoryImpl(
 
     override fun update(
         name: String?,
-        image: String?,
-        backImage: String?,
+        imageId: String?,
+        backImageId: String?,
         likeCount: Long?,
         origin: PhotoCardModel
     ): PhotoCardModel =
         PhotoCardModelImpl(
             PhotoCardJpaEntity(
                 name = name ?: origin.getName(),
-                image = image ?: origin.getImage(),
-                backImage = backImage ?: origin.getBackImage(),
+                imageId = imageId ?: origin.getImageUrl(),
+                backImageId = backImageId ?: origin.getBackImageUrl(),
                 likeCount = likeCount ?: origin.getLikeCount(),
                 group = (origin.getGroup() as GroupModelImpl).groupJpaEntity,
                 member = (origin.getMember() as MemberModelImpl).memberJpaEntity,

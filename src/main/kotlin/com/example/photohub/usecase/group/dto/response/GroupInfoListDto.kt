@@ -15,7 +15,7 @@ data class GroupInfo(
         fun of(model: GroupModel): GroupInfo = GroupInfo(
             id = model.getId(),
             name = model.getName(),
-            logo = model.getLogo()
+            logo = model.getLogoUrl()
         )
     }
 }

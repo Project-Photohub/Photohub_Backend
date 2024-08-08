@@ -12,8 +12,8 @@ import java.util.*
 @Entity(name = TableNames.PHOTO_CARD)
 class PhotoCardJpaEntity(
     name: String,
-    image: String,
-    backImage: String,
+    imageId: String,
+    backImageId: String,
     likeCount: Long = 0,
     group: GroupJpaEntity,
     member: MemberJpaEntity,
@@ -26,12 +26,12 @@ class PhotoCardJpaEntity(
     var name: String = name
         protected set
 
-    @Column(name = "image", updatable = true, nullable = false)
-    var image: String = image
+    @Column(name = "image_id", updatable = true, nullable = false)
+    var imageId: String = imageId
         protected set
 
-    @Column(name = "back_image", updatable = true, nullable = false)
-    var backImage: String = backImage
+    @Column(name = "back_image_id", updatable = true, nullable = false)
+    var backImageId: String = backImageId
         protected set
 
     @Column(name = "like_count", updatable = true, nullable = false)

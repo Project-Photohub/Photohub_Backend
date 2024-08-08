@@ -21,8 +21,8 @@ data class PhotoCardMaximumInfoResponse(
                 PhotoCardMaximumInfoResponse(
                     id = getId(),
                     name = getName(),
-                    image = getImage(),
-                    backImage = getBackImage(),
+                    image = getImageUrl(),
+                    backImage = getBackImageUrl(),
                     groupName = getGroup().getName(),
                     memberName = getMember().getName(),
                     memberNickname = getMember().getNickname(),

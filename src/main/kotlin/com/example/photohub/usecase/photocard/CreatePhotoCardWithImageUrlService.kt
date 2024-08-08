@@ -25,8 +25,8 @@ class CreatePhotoCardWithImageUrlService(
         val model = request.run {
             photoCardModelFactory.create(
                 name = name,
-                image = image,
-                backImage = backImage,
+                imageId = image,
+                backImageId = backImage,
                 member = member,
                 uploader = getCurrentUserPort()
             )
