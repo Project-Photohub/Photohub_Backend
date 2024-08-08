@@ -43,6 +43,6 @@ class S3Manager(
                 .key(Path.join(s3Properties.fileNamePrefix, fileId))
                 .bucket(s3Properties.bucketName)
                 .build()
-        ).deleteMarker()
+        )
     }
 }
