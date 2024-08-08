@@ -1,6 +1,7 @@
 package com.example.photohub.infra.file.config
 
 import com.example.photohub.infra.env.file.S3Properties
+import jakarta.annotation.PreDestroy
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
@@ -12,9 +13,11 @@ class S3Config(
     private val s3Properties: S3Properties
 ) {
 
+    private lateinit var s3Client: S3Client
+
     @Bean
-    fun awsS3Client(): S3Client =
-        S3Client.builder()
+    fun awsS3Client(): S3Client {
+        s3Client = S3Client.builder()
             .credentialsProvider {
                 AwsBasicCredentials.create(
                     s3Properties.accessKey,
@@ -23,4 +26,12 @@ class S3Config(
             }
             .region(Region.of(s3Properties.region))
             .build()
+
+        return s3Client
+    }
+
+    @PreDestroy
+    fun destroy() {
+        this.s3Client.close()
+    }
 }
