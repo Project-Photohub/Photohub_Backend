@@ -64,4 +64,6 @@ interface PhotoCardRepository : Repository<PhotoCardJpaEntity, UUID?> {
         @Param("uploaderId")
         uploaderId: Long
     ): List<PhotoCardJpaEntity>
+
+    fun deleteById(id: UUID)
 }

@@ -5,6 +5,7 @@ import com.example.photohub.data.photocard.repository.PhotoCardRepository
 import com.example.photohub.usecase.global.model.MappingProvider
 import com.example.photohub.usecase.photocard.model.PhotoCardModel
 import com.example.photohub.usecase.photocard.model.impl.PhotoCardModelImpl
+import com.example.photohub.usecase.photocard.port.out.persistence.DeletePhotoCardPort
 import com.example.photohub.usecase.photocard.port.out.persistence.FindPhotoCardPort
 import com.example.photohub.usecase.photocard.port.out.persistence.SavePhotoCardPort
 import java.util.*
@@ -14,7 +15,8 @@ class PhotoCardPersistenceAdapter(
     private val photoCardRepository: PhotoCardRepository,
     private val mappingProvider: MappingProvider
 ) : SavePhotoCardPort,
-    FindPhotoCardPort {
+    FindPhotoCardPort,
+    DeletePhotoCardPort {
 
     override fun save(photoCardModel: PhotoCardModel): PhotoCardModel {
         return PhotoCardModelImpl(
@@ -56,4 +58,8 @@ class PhotoCardPersistenceAdapter(
                 mappingProvider
             )
         }
+
+    override fun deleteById(id: UUID) {
+        photoCardRepository.deleteById(id)
+    }
 }

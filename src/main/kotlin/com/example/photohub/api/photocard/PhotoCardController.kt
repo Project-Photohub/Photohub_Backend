@@ -27,6 +27,7 @@ class PhotoCardController(
     private val getLatestPhotoCardUseCase: GetLatestPhotoCardUseCase,
     private val createPhotoCardWithImageUrlUseCase: CreatePhotoCardWithImageUrlUseCase,
     private val createPhotoCardUseCase: CreatePhotoCardUseCase,
+    private val deletePhotoCardFromIdUseCase: DeletePhotoCardFromIdUseCase,
     private val likePhotoCardUseCase: LikePhotoCardUseCase
 ) {
 
@@ -91,6 +92,14 @@ class PhotoCardController(
             image, backImage, name, memberId
         )
     )
+
+    @RequireAuthenticated
+    @DeleteMapping("/{id}")
+    fun deletePhotoCard(
+        @PathVariable("id")
+        @Positive
+        id: UUID
+    ) = deletePhotoCardFromIdUseCase(id)
 
     @PatchMapping("/like/{photoCardId}")
     fun likePhotoCard(
