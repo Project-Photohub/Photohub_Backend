@@ -48,8 +48,8 @@ class PhotoCardModelFactoryImpl(
         PhotoCardModelImpl(
             PhotoCardJpaEntity(
                 name = name ?: origin.getName(),
-                imageId = imageId ?: origin.getImageUrl(),
-                backImageId = backImageId ?: origin.getBackImageUrl(),
+                imageId = imageId ?: (origin as PhotoCardModelImpl).photoCardJpaEntity.imageId,
+                backImageId = backImageId ?: (origin as PhotoCardModelImpl).photoCardJpaEntity.backImageId,
                 likeCount = likeCount ?: origin.getLikeCount(),
                 group = (origin.getGroup() as GroupModelImpl).groupJpaEntity,
                 member = (origin.getMember() as MemberModelImpl).memberJpaEntity,
